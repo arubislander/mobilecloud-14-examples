@@ -45,7 +45,7 @@ func (s *Servlet) getHandler(w http.ResponseWriter, r *http.Request) {
 	// Loop through all of the stored videos and print them out
 	// for the client to see.
 	for _, v := range s.videos {
-		fmt.Fprintln(w, v.Name(), " : ", v.Url())
+		fmt.Fprintf(w, "%s : %s\n", v.Name(), v.Url())
 	}
 }
 

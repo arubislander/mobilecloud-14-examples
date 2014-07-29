@@ -65,11 +65,9 @@ func TestVideoAddAndList(t *testing.T) {
 	// Create the HTTP POST request data to send the video to the server
 	data := createVideoPostData(title, videoUrl, duration)
 
-	url := TEST_URL + "/post"
-
 	// Use our HttpClient to send the POST request and obtain the
 	// HTTP response that the server sends back.
-	resp, err := http.DefaultClient.PostForm(url, data)
+	resp, err := http.DefaultClient.PostForm(TEST_URL, data)
 	if err != nil {
 		t.Error("Executing request gave an error:", err)
 	}
@@ -97,8 +95,7 @@ func TestVideoAddAndList(t *testing.T) {
 	// Now that we have posted the video to the server, we construct
 	// an HTTP GET request to fetch the list of videos from the VideoServlet
 	// Execute our GET request and obtain the server's HTTP response
-	url = TEST_URL + "/get"
-	listResponse, err := http.DefaultClient.Get(url)
+	listResponse, err := http.DefaultClient.Get(TEST_URL)
 	if err != nil {
 		t.Error("Executing request gave an error:", err)
 	}
@@ -151,7 +148,7 @@ func TestMissingRequestParameter(t *testing.T) {
 
 	// Use the default HttpClient to send the POST request and obtain the
 	// HTTP response that the server sends back
-	response, err := http.DefaultClient.PostForm(TEST_URL+"/post", data)
+	response, err := http.DefaultClient.PostForm(TEST_URL, data)
 	if err != nil {
 		t.Error("Executing request gave an error:", err)
 	}

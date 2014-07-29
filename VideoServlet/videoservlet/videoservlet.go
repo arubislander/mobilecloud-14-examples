@@ -41,6 +41,18 @@ const VIDEO_ADDED = "Video added."
 * list of the videos that is sent back to the client.
 *
  */
+
+func (s *VideoServlet) handler(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case "GET":
+		s.getHandler(w, r)
+		break
+	case "POST":
+		s.postHandler(w, r)
+		break
+	}
+}
+
 func (s *VideoServlet) getHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Make sure and set the content-type header so that the client
@@ -111,7 +123,6 @@ func (s *VideoServlet) postHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *VideoServlet) Run() {
-	http.HandleFunc("/VideoServlet/video/get", s.getHandler)
-	http.HandleFunc("/VideoServlet/video/post", s.postHandler)
+	http.HandleFunc("/VideoServlet/video", s.handler)
 	http.ListenAndServe(fmt.Sprintf("%s:%d", s.address, s.port), nil)
 }

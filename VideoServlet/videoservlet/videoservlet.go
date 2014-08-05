@@ -34,14 +34,6 @@ func New(address string, port int) *VideoServlet {
 
 const VIDEO_ADDED = "Video added."
 
-/**
-* This method processes all of the HTTP GET requests routed to the
-* servlet by the web container. This method loops through the lists
-* of videos that have been sent to it and generates a plain/text
-* list of the videos that is sent back to the client.
-*
- */
-
 func (s *VideoServlet) handler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
@@ -52,6 +44,14 @@ func (s *VideoServlet) handler(w http.ResponseWriter, r *http.Request) {
 		break
 	}
 }
+
+/**
+ * This method processes all of the HTTP GET requests routed to the
+ * servlet by the web container. This method loops through the lists
+ * of videos that have been sent to it and generates a plain/text
+ * list of the videos that is sent back to the client.
+ *
+ */
 
 func (s *VideoServlet) getHandler(w http.ResponseWriter, r *http.Request) {
 
